@@ -12,12 +12,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'kodaTeck',
       theme: ThemeData(
         inputDecorationTheme: kDefaultInputDecorationTheme,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+        //visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomeScreen(),
+      home: HomeScreen(
+        navIcons: NavIcons.Home,
+      ),
     );
   }
 }

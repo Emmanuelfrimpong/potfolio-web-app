@@ -1,72 +1,113 @@
 import 'package:flutter/material.dart';
 import 'package:web_app/models/Service.dart';
+import 'package:web_app/styles/app_colors.dart';
 
 import '../../../constants.dart';
 
-class ServiceCard extends StatefulWidget {
-  const ServiceCard({
+class ServicesCard extends StatefulWidget {
+  const ServicesCard({
     Key key,
     this.index,
+    this.press,
   }) : super(key: key);
 
   final int index;
+  final Function press;
 
   @override
-  _ServiceCardState createState() => _ServiceCardState();
+  _ServicesCardState createState() => _ServicesCardState();
 }
 
-class _ServiceCardState extends State<ServiceCard> {
+class _ServicesCardState extends State<ServicesCard> {
   bool isHover = false;
-  Duration duration = Duration(milliseconds: 200);
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: widget.press,
       onHover: (value) {
         setState(() {
           isHover = value;
         });
       },
-      hoverColor: Colors.transparent,
       child: AnimatedContainer(
-        duration: duration,
-        margin: EdgeInsets.symmetric(vertical: kDefaultPadding * 2),
-        height: 256,
-        width: 256,
+        duration: Duration(milliseconds: 200),
+        width: 540,
+        margin: EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.all(15),
         decoration: BoxDecoration(
-          color: services[widget.index].color,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [if (isHover) kDefaultCardShadow],
+          color: isHover ? Colors.white.withOpacity(0.8) : Colors.white,
+          borderRadius: BorderRadius.all(
+            Radius.circular(15),
+          ),
+          boxShadow: [
+            isHover
+                ? kDefaultCardShadow
+                : BoxShadow(
+                    offset: Offset(5, 10),
+                    blurRadius: 20,
+                    color: primary.withOpacity(.5),
+                  ),
+          ],
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            AnimatedContainer(
-              duration: duration,
-              padding: EdgeInsets.all(kDefaultPadding * 1.5),
-              height: 120,
-              width: 120,
+            Container(
+              padding: EdgeInsets.all(30),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: primary,
                 shape: BoxShape.circle,
                 boxShadow: [
-                  if (!isHover)
-                    BoxShadow(
-                      offset: Offset(0, 20),
-                      blurRadius: 30,
-                      color: Colors.black.withOpacity(0.1),
-                    ),
+                  BoxShadow(
+                    offset: Offset(5, 10),
+                    blurRadius: 20,
+                    color: primary.withOpacity(.5),
+                  ),
                 ],
               ),
-              child: Image.asset(
-                services[widget.index].image,
-                fit: BoxFit.fill,
+              child: Icon(
+                services[widget.index].icon,
+                size: 50,
+                color: Colors.white,
               ),
             ),
-            SizedBox(height: kDefaultPadding),
+            SizedBox(
+              height: 30,
+            ),
             Text(
               services[widget.index].title,
-              style: TextStyle(fontSize: 22),
+              style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: primaryDark),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            RichText(
+              textAlign: TextAlign.start,
+              text: TextSpan(
+                style: TextStyle(
+                    fontSize: 17,
+                    height: 1.5,
+                    color: Colors.black54,
+                    fontWeight: FontWeight.w700),
+                children: <TextSpan>[
+                  services[widget.index].description.length > 300
+                      ? TextSpan(
+                          text: services[widget.index]
+                                  .description
+                                  .substring(0, 300) +
+                              "....")
+                      : TextSpan(
+                          text: services[widget.index].description + "...."),
+                  TextSpan(
+                      text: "Read More",
+                      style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          fontWeight: FontWeight.bold,
+                          color: primary))
+                ],
+              ),
             ),
           ],
         ),

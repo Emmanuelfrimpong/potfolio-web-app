@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:web_app/components/default_button.dart';
 import 'package:web_app/components/section_title.dart';
 import 'package:web_app/constants.dart';
 
@@ -24,7 +23,6 @@ class ContactSection extends StatelessWidget {
           SizedBox(height: kDefaultPadding * 2.5),
           SectionTitle(
             title: "Contact Me",
-            subTitle: "For Project inquiry and information",
             color: Color(0xFF07E24A),
           ),
           ContactBox()
@@ -151,12 +149,12 @@ class ContactForm extends StatelessWidget {
           SizedBox(height: kDefaultPadding * 2),
           Center(
             child: FittedBox(
-              child: DefaultButton(
-                imageSrc: "assets/images/contact_icon.png",
-                text: "Contact Me!",
-                press: () {},
-              ),
-            ),
+                // child: DefaultButton(
+                //   imageSrc: "assets/images/contact_icon.png",
+                //   text: "Contact Me!",
+                //   press: () {},
+                // ),
+                ),
           )
         ],
       ),

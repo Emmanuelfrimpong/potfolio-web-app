@@ -31,3 +31,11 @@ final kDefaultOutlineInputBorder = OutlineInputBorder(
     color: Color(0xFFCEE4FD),
   ),
 );
+
+List<String> relationList = [
+  "Guest",
+  "Client",
+  "Co-worker",
+  "Emplyee",
+  "Others"
+];

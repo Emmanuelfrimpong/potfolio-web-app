@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:web_app/models/RecentWork.dart';
-
+import 'package:web_app/styles/app_colors.dart';
 import '../../../constants.dart';
 
 class RecentWorkCard extends StatefulWidget {
@@ -34,28 +34,80 @@ class _RecentWorkCardState extends State<RecentWorkCard> {
         height: 320,
         width: 540,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: isHover ? Colors.white.withOpacity(0.8) : Colors.white,
           borderRadius: BorderRadius.circular(10),
           boxShadow: [if (isHover) kDefaultCardShadow],
         ),
         child: Row(
           children: [
-            Image.asset(recentWorks[widget.index].image),
+            Container(
+                width: 200,
+                height: 320,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(15),
+                      bottomRight: Radius.circular(15)),
+                  boxShadow: [if (isHover) kDefaultCardShadow],
+                ),
+                child: Image.asset(
+                  recentWorks[widget.index].image,
+                  fit: BoxFit.fill,
+                )),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                padding: EdgeInsets.only(
+                    left: kDefaultPadding,
+                    right: kDefaultPadding,
+                    top: kDefaultPadding),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(recentWorks[widget.index].category.toUpperCase()),
+                    Row(
+                      children: [
+                        Text(
+                          "Type: ",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.grey),
+                        ),
+                        Text(
+                          recentWorks[widget.index].category,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          "State: ",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.grey),
+                        ),
+                        Text(
+                          recentWorks[widget.index].progess,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.grey),
+                        ),
+                      ],
+                    ),
                     SizedBox(height: kDefaultPadding / 2),
-                    Text(
-                      recentWorks[widget.index].title,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline5
-                          .copyWith(height: 1.5),
+                    Text(recentWorks[widget.index].title,
+                        style: TextStyle(
+                            fontSize: 22,
+                            color: primary,
+                            fontWeight: FontWeight.bold)),
+                    SizedBox(height: kDefaultPadding / 2),
+                    SizedBox(
+                      height: 170,
+                      child: Text(recentWorks[widget.index].description,
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey,
+                              fontWeight: FontWeight.w500)),
                     ),
                     SizedBox(height: kDefaultPadding),
                     Text(
