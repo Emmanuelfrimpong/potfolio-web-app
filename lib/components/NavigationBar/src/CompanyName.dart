@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:web_app/styles/app_colors.dart';
 
 class CompanyName extends StatelessWidget {
+  final double fontSize;
+  final double hieght;
+  CompanyName({Key key, @required this.fontSize, @required this.hieght})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(10),
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
@@ -21,14 +26,15 @@ class CompanyName extends StatelessWidget {
           ),
         ],
       ),
-      height: 70.0,
+      height: hieght,
       child: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             RichText(
               text: TextSpan(
-                style: TextStyle(color: primaryDark, fontSize: 45),
+                style: TextStyle(color: primaryDark, fontSize: fontSize),
                 children: [
                   TextSpan(
                       text: "Koda",

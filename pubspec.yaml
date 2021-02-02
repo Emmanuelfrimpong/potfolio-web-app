@@ -32,6 +32,9 @@ dependencies:
   percent_indicator: "^2.1.7+2"
   font_awesome_flutter: ^8.11.0
   image_picker_web: ^1.0.9
+  modal_bottom_sheet: ^1.0.0+1
+  fluttertoast: ^7.1.6
+  url_launcher: ^5.7.10
 
 
 dev_dependencies:

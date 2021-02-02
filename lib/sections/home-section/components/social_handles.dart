@@ -30,7 +30,7 @@ class SocialHandles extends StatelessWidget {
         child: Center(
           child: Icon(
             icon,
-            color: Colors.white,
+            color: color,
           ),
         ),
         padding: EdgeInsets.all(20),

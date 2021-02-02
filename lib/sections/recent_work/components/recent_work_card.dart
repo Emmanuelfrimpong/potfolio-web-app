@@ -5,14 +5,18 @@ import '../../../constants.dart';
 
 class RecentWorkCard extends StatefulWidget {
   // just press "Command + ."
-  const RecentWorkCard({
-    Key key,
-    this.index,
-    this.press,
-  }) : super(key: key);
+  const RecentWorkCard(
+      {Key key,
+      this.index,
+      this.press,
+      this.width,
+      this.imageWidth,
+      this.hieght})
+      : super(key: key);
 
   final int index;
   final Function press;
+  final double width, imageWidth, hieght;
 
   @override
   _RecentWorkCardState createState() => _RecentWorkCardState();
@@ -31,8 +35,8 @@ class _RecentWorkCardState extends State<RecentWorkCard> {
       },
       child: AnimatedContainer(
         duration: Duration(milliseconds: 200),
-        height: 320,
-        width: 540,
+        height: widget.hieght,
+        width: widget.width,
         decoration: BoxDecoration(
           color: isHover ? Colors.white.withOpacity(0.8) : Colors.white,
           borderRadius: BorderRadius.circular(10),
@@ -41,8 +45,8 @@ class _RecentWorkCardState extends State<RecentWorkCard> {
         child: Row(
           children: [
             Container(
-                width: 200,
-                height: 320,
+                width: widget.imageWidth,
+                height: widget.hieght,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                       topRight: Radius.circular(15),
@@ -56,9 +60,7 @@ class _RecentWorkCardState extends State<RecentWorkCard> {
             Expanded(
               child: Padding(
                 padding: EdgeInsets.only(
-                    left: kDefaultPadding,
-                    right: kDefaultPadding,
-                    top: kDefaultPadding),
+                    left: kDefaultPadding, right: 10, top: kDefaultPadding),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -97,22 +99,24 @@ class _RecentWorkCardState extends State<RecentWorkCard> {
                     SizedBox(height: kDefaultPadding / 2),
                     Text(recentWorks[widget.index].title,
                         style: TextStyle(
-                            fontSize: 22,
+                            fontSize: 18,
                             color: primary,
                             fontWeight: FontWeight.bold)),
                     SizedBox(height: kDefaultPadding / 2),
-                    SizedBox(
-                      height: 170,
-                      child: Text(recentWorks[widget.index].description,
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.grey,
-                              fontWeight: FontWeight.w500)),
-                    ),
-                    SizedBox(height: kDefaultPadding),
-                    Text(
-                      "View Details",
-                      style: TextStyle(decoration: TextDecoration.underline),
+                    Text(recentWorks[widget.index].description,
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.grey,
+                            fontWeight: FontWeight.w500)),
+                    Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        "View Details",
+                        style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            color: primary),
+                      ),
                     )
                   ],
                 ),

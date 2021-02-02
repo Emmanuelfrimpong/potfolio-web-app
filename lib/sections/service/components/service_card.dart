@@ -5,14 +5,17 @@ import 'package:web_app/styles/app_colors.dart';
 import '../../../constants.dart';
 
 class ServicesCard extends StatefulWidget {
-  const ServicesCard({
-    Key key,
-    this.index,
-    this.press,
-  }) : super(key: key);
+  const ServicesCard(
+      {Key key,
+      this.index,
+      this.press,
+      @required this.hieght,
+      @required this.width})
+      : super(key: key);
 
   final int index;
   final Function press;
+  final double width, hieght;
 
   @override
   _ServicesCardState createState() => _ServicesCardState();
@@ -22,6 +25,7 @@ class _ServicesCardState extends State<ServicesCard> {
   bool isHover = false;
   @override
   Widget build(BuildContext context) {
+    print("long=============${services[widget.index].description.length}");
     return InkWell(
       onTap: widget.press,
       onHover: (value) {
@@ -31,8 +35,8 @@ class _ServicesCardState extends State<ServicesCard> {
       },
       child: AnimatedContainer(
         duration: Duration(milliseconds: 200),
-        width: 540,
-        margin: EdgeInsets.symmetric(horizontal: 10),
+        width: widget.width,
+        height: widget.hieght,
         padding: EdgeInsets.all(15),
         decoration: BoxDecoration(
           color: isHover ? Colors.white.withOpacity(0.8) : Colors.white,
@@ -76,7 +80,7 @@ class _ServicesCardState extends State<ServicesCard> {
             Text(
               services[widget.index].title,
               style: TextStyle(
-                  fontSize: 22,
+                  fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: primaryDark),
             ),
@@ -87,7 +91,7 @@ class _ServicesCardState extends State<ServicesCard> {
               textAlign: TextAlign.start,
               text: TextSpan(
                 style: TextStyle(
-                    fontSize: 17,
+                    fontSize: 15,
                     height: 1.5,
                     color: Colors.black54,
                     fontWeight: FontWeight.w700),
@@ -101,7 +105,7 @@ class _ServicesCardState extends State<ServicesCard> {
                       : TextSpan(
                           text: services[widget.index].description + "...."),
                   TextSpan(
-                      text: "Read More",
+                      text: " Read More",
                       style: TextStyle(
                           decoration: TextDecoration.underline,
                           fontWeight: FontWeight.bold,

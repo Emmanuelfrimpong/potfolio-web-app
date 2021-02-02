@@ -9,16 +9,18 @@ class RoundedButton extends StatelessWidget {
   final double fontSize;
   final Color color;
   final Color textColor;
-  RoundedButton({
-    Key key,
-    this.text,
-    this.press,
-    this.color,
-    this.textColor,
-    this.verticalPadding = 10,
-    this.horizontalPadding = 20,
-    this.fontSize = 16,
-  }) : super(key: key);
+  final bool isLoading;
+  RoundedButton(
+      {Key key,
+      this.text,
+      this.press,
+      this.color,
+      this.textColor,
+      this.verticalPadding = 10,
+      this.horizontalPadding = 20,
+      this.fontSize = 16,
+      this.isLoading})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +35,19 @@ class RoundedButton extends StatelessWidget {
       highlightColor: primaryLight,
       color: color,
       textColor: textColor,
-      child: Text(
-        text,
-        style: TextStyle(
-            fontSize: fontSize, fontWeight: FontWeight.bold, color: textColor),
-      ),
+      child: isLoading != null && isLoading
+          ? Image.asset(
+              'assets/images/spinner.gif',
+              width: 19.0,
+              height: 19.0,
+            )
+          : Text(
+              text,
+              style: TextStyle(
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.bold,
+                  color: textColor),
+            ),
     );
   }
 }

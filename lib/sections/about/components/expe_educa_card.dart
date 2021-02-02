@@ -36,62 +36,62 @@ class _ExpeEduCardState extends State<ExpeEduCard> {
             Row(
               children: [
                 Icon(FontAwesome.calendar_check_o,
-                    color: Colors.grey, size: 20),
+                    color: Colors.grey, size: 18),
                 SizedBox(
-                  width: 20,
+                  width: 15,
                 ),
                 Text(
                   widget.period,
                   style: TextStyle(
-                      fontSize: 15,
+                      fontSize: 12,
                       fontWeight: FontWeight.bold,
                       color: Colors.grey),
                 )
               ],
             ),
             SizedBox(
-              height: 10,
+              height: 8,
             ),
             Row(
               children: [
-                Icon(FontAwesome.institution, color: Colors.grey, size: 20),
+                Icon(FontAwesome.institution, color: Colors.grey, size: 18),
                 SizedBox(
-                  width: 20,
+                  width: 18,
                 ),
                 Text(
                   widget.institution,
                   style: TextStyle(
-                      fontSize: 15,
+                      fontSize: 12,
                       fontWeight: FontWeight.bold,
                       color: Colors.grey),
                 )
               ],
             ),
             SizedBox(
-              height: 10,
+              height: 8,
             ),
             Row(
               children: [
-                Icon(FontAwesome.location_arrow, color: Colors.grey, size: 20),
+                Icon(FontAwesome.location_arrow, color: Colors.grey, size: 18),
                 SizedBox(
-                  width: 20,
+                  width: 18,
                 ),
                 Text(
                   widget.location,
                   style: TextStyle(
-                      fontSize: 15,
+                      fontSize: 12,
                       fontWeight: FontWeight.bold,
                       color: Colors.grey),
                 )
               ],
             ),
             SizedBox(
-              height: 15,
+              height: 13,
             ),
             Text(
               widget.title,
               style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
                   color: primaryLight,
                   fontWeight: FontWeight.bold),
             ),
@@ -99,11 +99,11 @@ class _ExpeEduCardState extends State<ExpeEduCard> {
               height: 15,
             ),
             Container(
-              width: MediaQuery.of(context).size.width * 0.32,
+              //width: MediaQuery.of(context).size.width * 0.32,
               child: Text(
                 widget.description != null ? widget.description : "",
                 style: TextStyle(
-                    fontSize: 17,
+                    fontSize: 15,
                     fontWeight: FontWeight.w800,
                     color: Colors.black54,
                     height: 1.6),
