@@ -16,7 +16,7 @@ class ContactSection extends StatefulWidget {
 class _ContactSectionState extends State<ContactSection> {
   final _formKey = GlobalKey<FormState>();
   String phone = "+233248485308";
-  var whatsappUrl = "whatsapp://send?phone=+233248485308&text=Hello KodaTeck";
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,8 @@ class _ContactSectionState extends State<ContactSection> {
                     backGround: Colors.white70,
                     message: "Send whats app",
                     onTab: () async {
-                      await launchURL("whatsapp://send?");
+                      await launchURL(
+                          "https://wa.me/$phone?text=Hello kodaTeck");
                       //lunch url
                     },
                   ),

@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:web_app/constants.dart';
+import 'package:web_app/other-widget/others.dart';
 import 'package:web_app/responsive_widget.dart';
 import 'package:web_app/styles/app_colors.dart';
 import 'components/blur_box.dart';
@@ -71,35 +72,50 @@ class HomeSection extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               SocialHandles(
-                                onTab: () {},
+                                onTab: () async {
+                                  await launchURL(
+                                      'https://www.facebook.com/fuse.koda');
+                                },
                                 backGround: primary,
                                 color: Colors.white,
                                 icon: FontAwesome.facebook,
                                 message: "Facebook",
                               ),
                               SocialHandles(
-                                onTab: () {},
+                                onTab: () async {
+                                  await launchURL(
+                                      'https://twitter.com/Fuse_Koda');
+                                },
                                 backGround: primary,
                                 color: Colors.white,
                                 icon: FontAwesome.twitter,
                                 message: "Twitter",
                               ),
                               SocialHandles(
-                                onTab: () {},
+                                onTab: () async {
+                                  await launchURL(
+                                      'https://www.instagram.com/fuse_koda');
+                                },
                                 backGround: primary,
                                 color: Colors.white,
                                 icon: FontAwesome.instagram,
                                 message: "Instagram",
                               ),
                               SocialHandles(
-                                onTab: () {},
+                                onTab: () async {
+                                  await launchURL(
+                                      'https://www.linkedin.com/in/emmanuel-nyamaah-frimpong-8624a1136/');
+                                },
                                 backGround: primary,
                                 color: Colors.white,
                                 icon: FontAwesome.linkedin,
                                 message: "LinkedIn",
                               ),
                               SocialHandles(
-                                onTab: () {},
+                                onTab: () async {
+                                  await launchURL(
+                                      'https://github.com/Emmanuelfrimpong');
+                                },
                                 backGround: primary,
                                 color: Colors.white,
                                 icon: FontAwesome.github,
