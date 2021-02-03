@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -169,19 +170,16 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: InkWell(
                                 onTap: ()async {
                                   if(isLoggedIn){
-                                    CustomDialogBox(
-                                      img: FontAwesome.warning,
-                                      title: "Sign Out",
-                                      descriptions: "Are you Sure you want to sign Out",
-                                      btn1Text: "Yes",
-                                      btn2Text: "No",
-                                      btn1Press: ()async{
-                                        await signOut(context);
-                                      },
-                                      btn2Press: (){
-                                        Navigator.of(context).pop();
-                                      },
-                                    );
+                                    AwesomeDialog(
+                                      context: context,
+                                      dialogType: DialogType.INFO,
+                                      animType: AnimType.BOTTOMSLIDE,
+                                      body: Container(width: 150,height: 150,color: primary,),
+                                      title: 'Sign Out',
+                                      desc: 'Are you Sure you want to Sign Out?',
+                                      btnCancelOnPress: () {  Navigator.of(context).pop();},
+                                      btnOkOnPress: () async{await signOut(context);},
+                                    )..show();
 
                                   }else{
                                     showMaterialModalBottomSheet(
@@ -389,19 +387,16 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: InkWell(
                             onTap: ()async {
                               if(isLoggedIn){
-                                CustomDialogBox(
-                                  img: FontAwesome.warning,
-                                  title: "Sign Out",
-                                  descriptions: "Are you Sure you want to sign Out",
-                                  btn1Text: "Yes",
-                                  btn2Text: "No",
-                                  btn1Press: ()async{
-                                    await signOut(context);
-                                  },
-                                  btn2Press: (){
-                                    Navigator.of(context).pop();
-                                  },
-                                );
+                                AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.INFO,
+                                  body: Container(width: 150,height: 150,color: primary,),
+                                  animType: AnimType.BOTTOMSLIDE,
+                                  title: 'Sign Out',
+                                  desc: 'Are you Sure you want to Sign Out?',
+                                  btnCancelOnPress: () {  Navigator.of(context).pop();},
+                                  btnOkOnPress: () async{await signOut(context);},
+                                )..show();
                               }else{
                                 showMaterialModalBottomSheet(
                                   context: context,

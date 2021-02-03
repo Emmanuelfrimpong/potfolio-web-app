@@ -41,6 +41,6 @@ class _MyAppState extends State<MyApp> {
   }
  void getUserSate()async{
    SharedPreferences prefs = await SharedPreferences.getInstance();
-   Provider.of<AppProviders>(context, listen: false).updateLogin(prefs.getBool('auth'));
+   Provider.of<AppProviders>(context, listen: false).updateLogin(prefs.getBool('auth')??false);
   }
 }
