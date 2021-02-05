@@ -9,14 +9,14 @@ class FeedbackCard extends StatefulWidget {
       {Key key,
       this.index,
       this.press,
-      @required this.hieght,
+      @required this.height,
       @required this.width,
       this.imageSize})
       : super(key: key);
 
   final int index;
   final Function press;
-  final double width, hieght, imageSize;
+  final double width, height, imageSize;
 
   @override
   _FeedbackCardState createState() => _FeedbackCardState();
@@ -38,7 +38,7 @@ class _FeedbackCardState extends State<FeedbackCard> {
       child: AnimatedContainer(
         duration: duration,
         padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-        height: widget.hieght,
+        height: widget.height,
         width: widget.width,
         decoration: BoxDecoration(
           color: isHover

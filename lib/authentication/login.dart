@@ -1,9 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:web_app/components/round_button.dart';
 import 'package:web_app/components/textFields.dart';
-import 'package:web_app/other-widget/others.dart';
+import 'package:web_app/other-widget/other-functions.dart';
 import 'package:web_app/responsive_widget.dart';
 import 'package:web_app/services/firebase-services.dart';
 import 'package:web_app/styles/app_colors.dart';
@@ -257,16 +258,38 @@ class _LoginPageState extends State<LoginPage> {
     });
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
+      try{
       var output = await signInWithEmailPassword(context,email, password);
       if (output != null) {
         showToast(context, fToast, Icons.check, primaryLight, output);
         isLoading = false;
         Navigator.of(context).pop();
       } else {
+        isLoading = false;
         await showToast(context, fToast, Icons.check, primaryLight,
             "Sorry you are not an Admin");
       }
-      isLoading = false;
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'user-not-found') {
+          isLoading = false;
+          await showToast(context, fToast,Icons.error,Colors.red, 'No user found for that email.',);
+        } else if (e.code == 'wrong-password') {
+          setState(() {
+            isLoading = false;
+          });
+          await showToast(context, fToast,Icons.error,Colors.red, 'Wrong password provided for that user.',);
+        }
+
+      }catch(_){
+        setState(() {
+          isLoading = false;
+        });
+        await showToast(context, fToast,Icons.error,Colors.red, 'Bad Internet..Try again',);
+      }
+      setState(() {
+        isLoading = false;
+      });
+
     }
   }
 }

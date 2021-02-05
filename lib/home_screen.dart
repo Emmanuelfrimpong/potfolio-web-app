@@ -1,4 +1,3 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -18,7 +17,7 @@ import 'sections/recent_work/recent_work_section.dart';
 import 'services/providers.dart';
 import 'styles/app_colors.dart';
 
-enum NavIcons { Home, About, Services, Potfolio, Blog, Contacts }
+enum NavIcons { Home, About, Services, Portfolio, Blog, Contacts }
 
 class HomeScreen extends StatefulWidget {
   final NavIcons navIcons;
@@ -129,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   setState(() {
                                     select(3);
 
-                                    navIco = NavIcons.Potfolio;
+                                    navIco = NavIcons.Portfolio;
                                   });
                                 },
                               ),
@@ -170,17 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: InkWell(
                                 onTap: ()async {
                                   if(isLoggedIn){
-                                    AwesomeDialog(
-                                      context: context,
-                                      dialogType: DialogType.INFO,
-                                      animType: AnimType.BOTTOMSLIDE,
-                                      body: Container(width: 150,height: 150,color: primary,),
-                                      title: 'Sign Out',
-                                      desc: 'Are you Sure you want to Sign Out?',
-                                      btnCancelOnPress: () {  Navigator.of(context).pop();},
-                                      btnOkOnPress: () async{await signOut(context);},
-                                    )..show();
-
+                                    await _showMyDialog();
                                   }else{
                                     showMaterialModalBottomSheet(
                                       context: context,
@@ -248,7 +237,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           navIco == NavIcons.Services
                               ? ServiceSection()
                               : Container(),
-                          navIco == NavIcons.Potfolio
+                          navIco == NavIcons.Portfolio
                               ? RecentWorkSection()
                               : Container(),
                           navIco == NavIcons.Blog
@@ -351,7 +340,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           setState(() {
                             select(3);
 
-                            navIco = NavIcons.Potfolio;
+                            navIco = NavIcons.Portfolio;
                           });
                         },
                       ),
@@ -387,16 +376,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: InkWell(
                             onTap: ()async {
                               if(isLoggedIn){
-                                AwesomeDialog(
-                                  context: context,
-                                  dialogType: DialogType.INFO,
-                                  body: Container(width: 150,height: 150,color: primary,),
-                                  animType: AnimType.BOTTOMSLIDE,
-                                  title: 'Sign Out',
-                                  desc: 'Are you Sure you want to Sign Out?',
-                                  btnCancelOnPress: () {  Navigator.of(context).pop();},
-                                  btnOkOnPress: () async{await signOut(context);},
-                                )..show();
+                               await _showMyDialog();
                               }else{
                                 showMaterialModalBottomSheet(
                                   context: context,
@@ -452,7 +432,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           navIco == NavIcons.Services
                               ? ServiceSection()
                               : Container(),
-                          navIco == NavIcons.Potfolio
+                          navIco == NavIcons.Portfolio
                               ? RecentWorkSection()
                               : Container(),
                           navIco == NavIcons.Blog
@@ -478,5 +458,32 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           );
         }));
+  }
+
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return SizedBox(
+          width: 250,
+          child: CustomDialogBox(
+            title: 'Sign Out',
+            descriptions: 'Are you sure you want to Sign Out? ',
+            btn1Text: 'Sign Out',
+            alertType: CustomDialogBoxType.QUESTION,
+            btn1Press: ()async{
+              await signOut(context);
+              Navigator.of(context).pop();
+            },
+            btn2Press:(){
+              Navigator.of(context).pop();
+            },
+            btn2Text: 'Cancel',
+          ),
+        );
+
+      },
+    );
   }
 }

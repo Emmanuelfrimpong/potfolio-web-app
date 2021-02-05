@@ -25,7 +25,6 @@ class _ServicesCardState extends State<ServicesCard> {
   bool isHover = false;
   @override
   Widget build(BuildContext context) {
-    print("long=============${services[widget.index].description.length}");
     return InkWell(
       onTap: widget.press,
       onHover: (value) {
@@ -55,25 +54,18 @@ class _ServicesCardState extends State<ServicesCard> {
         ),
         child: Column(
           children: [
-            Container(
-              padding: EdgeInsets.all(30),
-              decoration: BoxDecoration(
-                color: primary,
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    offset: Offset(5, 10),
-                    blurRadius: 20,
-                    color: primary.withOpacity(.5),
-                  ),
-                ],
-              ),
-              child: Icon(
-                services[widget.index].icon,
-                size: 50,
-                color: Colors.white,
+            ClipOval(
+              child: Material(
+                color: primary, // button color
+                child: InkWell(
+                  //splashColor: Colors.red, // inkwell color
+                  child: SizedBox(width: 100, height: 100, child: Icon(
+                    services[widget.index].icon,color: Colors.white,size: 40,)),
+                  onTap: () {},
+                ),
               ),
             ),
+            
             SizedBox(
               height: 30,
             ),

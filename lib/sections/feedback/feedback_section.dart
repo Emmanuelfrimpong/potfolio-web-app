@@ -77,7 +77,7 @@ class _FeedbackSectionState extends State<FeedbackSection> {
                   (index) => FeedbackCard(
                     index: index,
                     width: 350,
-                    hieght: 350,
+                    height: 350,
                     imageSize: 100,
                   ),
                 ),
@@ -96,7 +96,7 @@ class _FeedbackSectionState extends State<FeedbackSection> {
                   (index) => FeedbackCard(
                     index: index,
                     width: 380,
-                    hieght: 400,
+                    height: 400,
                     imageSize: 120,
                   ),
                 ),

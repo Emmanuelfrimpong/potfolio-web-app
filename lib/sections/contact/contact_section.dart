@@ -3,7 +3,7 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:web_app/components/round_button.dart';
 import 'package:web_app/components/section_title.dart';
 import 'package:web_app/constants.dart';
-import 'package:web_app/other-widget/others.dart';
+import 'package:web_app/other-widget/other-functions.dart';
 import 'package:web_app/responsive_widget.dart';
 import 'package:web_app/sections/home-section/components/social_handles.dart';
 import 'package:web_app/styles/app_colors.dart';

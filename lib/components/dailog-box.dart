@@ -1,15 +1,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:web_app/components/round_button.dart';
 import 'package:web_app/styles/app_colors.dart';
 
-
+enum CustomDialogBoxType { INFORMATION,WARNING,QUESTION}
 class CustomDialogBox extends StatefulWidget {
   final String title, descriptions, btn1Text,btn2Text;
-  final IconData img;
   final Function btn1Press,btn2Press;
-
-  const CustomDialogBox({Key key,@required this.btn1Press,this.btn2Press, this.title, this.descriptions, @required this.btn1Text,this.btn2Text, this.img}) : super(key: key);
+  final CustomDialogBoxType alertType;
+  const CustomDialogBox({Key key,@required this.btn1Press,this.btn2Press, this.title, this.descriptions, @required this.btn1Text,this.btn2Text,this.alertType=CustomDialogBoxType.INFORMATION}) : super(key: key);
 
   @override
   _CustomDialogBoxState createState() => _CustomDialogBoxState();
@@ -18,19 +18,23 @@ class CustomDialogBox extends StatefulWidget {
 class _CustomDialogBoxState extends State<CustomDialogBox> {
   @override
   Widget build(BuildContext context) {
-    return Dialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(Constants.padding),
+
+    return Container(
+      child: Dialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(Constants.padding),
+        ),
+        elevation: 4,
+        backgroundColor: Colors.transparent,
+        child: contentBox(context),
       ),
-      elevation: 0,
-      backgroundColor: Colors.transparent,
-      child: contentBox(context),
     );
   }
   contentBox(context){
     return Stack(
       children: <Widget>[
         Container(
+          width: MediaQuery.of(context).size.width*.5,
           padding: EdgeInsets.only(left: Constants.padding,top: Constants.avatarRadius
               + Constants.padding, right: Constants.padding,bottom: Constants.padding
           ),
@@ -60,17 +64,28 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      FlatButton(
+                      RoundedButton(
+                        text:widget.btn1Text ,
                         color: primary,
-                          textColor: Colors.white,
-                          onPressed: widget.btn1Press,
-                          child: Text(widget.btn1Text,style: TextStyle(fontSize: 18),)),
-                      SizedBox(width: 20,),
+                        horizontalPadding: 15,
+                        fontSize: 16,
+                        verticalPadding: 3,
+                        press:widget.btn1Press ,
+                        textColor: Colors.white,
+                      ),
+
+                      SizedBox(width: 30,),
                       widget.btn2Text!=null?
-                      FlatButton(
-                        color: Colors.grey,
-                          onPressed: widget.btn2Press,
-                          child: Text(widget.btn2Text,style: TextStyle(fontSize: 18),)):Container(),
+                      RoundedButton(
+                        verticalPadding: 3,
+                        text:widget.btn2Text ,
+                        color: Colors.redAccent,
+                        horizontalPadding: 15,
+                        fontSize: 16,
+                        press:widget.btn2Press ,
+                        textColor: Colors.white,
+
+                      ):Container(),
                     ],
                   ),
                 ),
@@ -93,7 +108,13 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
               radius: Constants.avatarRadius,
               child: ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(Constants.avatarRadius)),
-                  child: Icon(widget.img)
+                  child:widget.alertType==CustomDialogBoxType.INFORMATION?
+                  Image.asset("assets/images/info.png"):
+                  widget.alertType==CustomDialogBoxType.WARNING?
+                  Image.asset("assets/images/warning.png"):
+                  widget.alertType==CustomDialogBoxType.QUESTION?
+                  Image.asset("assets/images/question.png"):
+                  Image.asset("assets/images/info.png")
               ),
             ),
           ),

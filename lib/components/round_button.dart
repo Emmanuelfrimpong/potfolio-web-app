@@ -28,8 +28,8 @@ class RoundedButton extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: new BorderRadius.circular(30.0),
       ),
-      hoverColor: primary.withOpacity(0.5),
-      splashColor: primary.withOpacity(0.5),
+      hoverColor: color.withOpacity(0.4),
+      splashColor: color.withOpacity(0.3),
       padding: EdgeInsets.symmetric(vertical: 25, horizontal: 50),
       onPressed: press,
       highlightColor: primaryLight,

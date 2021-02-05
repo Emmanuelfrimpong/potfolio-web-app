@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 showToast(BuildContext context, FToast fToast, IconData iconData,
     Color color, String message) {
   Widget toast = Container(
@@ -39,3 +37,5 @@ launchURL(String url) async {
     throw 'Could not launch $url';
   }
 }
+
+

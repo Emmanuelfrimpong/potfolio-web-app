@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:web_app/constants.dart';
-import 'package:web_app/other-widget/others.dart';
+import 'package:web_app/other-widget/other-functions.dart';
 import 'package:web_app/responsive_widget.dart';
 import 'package:web_app/styles/app_colors.dart';
 import 'components/blur_box.dart';
